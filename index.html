@@ -1,0 +1,397 @@
+<!doctype html><html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><meta name="theme-color" content="#000000"><title>Portfolio</title><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap"><style id="ps">
+/* Bố cục: thẻ hồ sơ cố định bên trái, lưới mô hình bên phải; điện thoại xếp thành một cột */
+:root{
+  --bg:#000000; --surface:#060b14; --ink:#e8f1ff; --mut:#8fa6c4; --line:#143a63; --soft:#0a1829;
+  --accent:#38d6e8; --accent-ink:#00131a; --zalo:#0068ff; --danger:#ff6b7a;
+  --g1:#2dd4e6; --g2:#a3e08a; --g3:#f4e06a; --b1:#38bdf8; --b2:#1e40af;
+  --shadow:0 0 0 1px rgba(56,189,248,.06),0 10px 32px rgba(30,64,175,.18); color-scheme:dark;
+  --font:'Be Vietnam Pro',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html{background:#000}
+body{
+  margin:0; background:var(--bg); color:var(--ink); font:15px/1.55 var(--font);
+  padding-block:16px 40px;
+  padding-left:max(16px,env(safe-area-inset-left,0px));
+  padding-right:max(16px,env(safe-area-inset-right,0px));
+}
+body.editing{padding-bottom:110px}
+.wrap{max-width:1120px;margin:0 auto}
+.top{display:flex;justify-content:flex-end;min-height:44px;margin-bottom:8px}
+.layout{display:grid;gap:24px;grid-template-columns:minmax(0,1fr)}
+@media(min-width:880px){
+  .layout{grid-template-columns:minmax(0,360px) minmax(0,1fr);gap:40px;align-items:start}
+  .profile{position:sticky;top:24px}
+}
+.profile{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:24px;box-shadow:var(--shadow);min-width:0}
+.avatar{width:128px;height:128px;border-radius:32px;border:4px solid transparent;
+  background:linear-gradient(var(--soft),var(--soft)) padding-box,linear-gradient(160deg,var(--b1),var(--b2)) border-box;display:grid;place-items:center;
+  font-size:46px;font-weight:700;color:var(--accent);overflow:hidden;flex:none}
+.avatar img{width:100%;height:100%;object-fit:cover;display:block}
+h1{font-size:clamp(26px,4.2vw,34px);line-height:1.15;letter-spacing:-.02em;margin:18px 0 6px;text-wrap:balance;overflow-wrap:anywhere;
+  background:linear-gradient(90deg,var(--g1),var(--g2),var(--g3));-webkit-background-clip:text;background-clip:text;color:transparent}
+h2{font-size:20px;letter-spacing:-.01em;margin:0;
+  background:linear-gradient(90deg,var(--g1),var(--g2),var(--g3));-webkit-background-clip:text;background-clip:text;color:transparent;display:inline-block}
+.sub{color:var(--mut);margin:0 0 18px;font-size:14px}
+.contacts{display:grid;margin-top:8px}
+.crow{display:grid;gap:10px;padding:14px 0;border-top:1px solid var(--line)}
+.cmeta{display:grid;gap:2px;min-width:0}
+.clabel{font-size:12px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:var(--mut)}
+.cval{font-size:16px;font-weight:500;overflow-wrap:anywhere;font-variant-numeric:tabular-nums}
+.cact{display:flex;gap:8px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;min-height:40px;padding:8px 16px;border-radius:10px;
+  border:1px solid transparent;font:600 14px/1.2 var(--font);text-decoration:none;cursor:pointer;color:var(--ink);background:transparent}
+.btn.zalo{background:var(--zalo);color:#fff}
+.btn.call{background:linear-gradient(180deg,var(--b1),var(--b2));color:#fff}
+.btn.mail{border-color:var(--line);background:var(--surface)}
+.btn.ghost{border-color:var(--line)}
+.btn.primary{background:linear-gradient(180deg,var(--b1),var(--b2));color:#fff}
+.btn.danger{color:var(--danger);border-color:var(--line)}
+.btn.sm{min-height:34px;padding:5px 12px;font-size:13px}
+.btn[disabled]{opacity:.55;cursor:default}
+.btn:hover:not([disabled]){filter:brightness(.96)}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.sec-head{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin-bottom:16px;flex-wrap:wrap}
+.count{color:var(--mut);font-size:14px}
+.grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fill,minmax(min(100%,260px),1fr))}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:16px;overflow:hidden;display:flex;flex-direction:column;min-width:0}
+.cover{display:block;width:100%;aspect-ratio:4/3;border:0;padding:0;background:var(--soft);cursor:zoom-in}
+.cover img{width:100%;height:100%;object-fit:cover;display:block}
+.ph{display:grid;place-items:center;color:var(--mut);font-size:13px;cursor:default;
+  background:repeating-linear-gradient(135deg,var(--soft) 0 12px,transparent 12px 24px)}
+.thumbs{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:4px;padding:4px 4px 0}
+.thumbs button{aspect-ratio:1;border:0;padding:0;border-radius:8px;overflow:hidden;background:var(--soft);cursor:zoom-in}
+.thumbs img{width:100%;height:100%;object-fit:cover;display:block}
+.more{display:grid;place-items:center;aspect-ratio:1;border-radius:8px;background:var(--soft);color:var(--mut);font-size:13px;font-weight:600}
+.cbody{padding:14px 16px 18px}
+.cbody h3{font-size:16px;line-height:1.3;margin:0 0 6px;overflow-wrap:anywhere}
+.cbody p{margin:0;color:var(--mut);white-space:pre-line;overflow-wrap:anywhere}
+.empty{border:1px dashed var(--line);border-radius:16px;padding:32px 20px;text-align:center;color:var(--mut)}
+/* chế độ chỉnh sửa */
+.in{width:100%;min-height:42px;padding:9px 12px;font:inherit;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:10px}
+textarea.in{min-height:96px;resize:vertical}
+label.f{display:grid;gap:6px;margin-top:14px;font-size:13px;font-weight:600;color:var(--mut)}
+label.f small{font-weight:400}
+.avrow{display:flex;gap:16px;align-items:center;flex-wrap:wrap}
+.avbtns{display:flex;gap:8px;flex-wrap:wrap}
+.filebtn{position:relative}
+.vh{position:absolute;width:1px;height:1px;opacity:0;overflow:hidden;pointer-events:none}
+.filebtn:focus-within{outline:2px solid var(--accent);outline-offset:2px}
+.card.edit{padding:16px}
+.ehead{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap}
+.idx{font-size:12px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--mut)}
+.eacts{display:flex;gap:6px}
+.egrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(88px,1fr));gap:8px;margin-top:14px}
+.eimg{position:relative;aspect-ratio:1;border-radius:10px;overflow:hidden;background:var(--soft)}
+.eimg img{width:100%;height:100%;object-fit:cover;display:block}
+.eimg button{position:absolute;top:4px;right:4px;width:28px;height:28px;border-radius:50%;border:0;background:rgba(0,0,0,.7);color:#fff;
+  font-size:16px;line-height:1;cursor:pointer;display:grid;place-items:center}
+.addimg{aspect-ratio:1;border:1px dashed var(--mut);border-radius:10px;display:grid;place-items:center;text-align:center;
+  font-size:13px;font-weight:600;color:var(--mut);cursor:pointer;position:relative;padding:6px}
+.addmodel{margin-top:16px;width:100%;border-style:dashed}
+.bar{position:fixed;left:0;right:0;bottom:0;z-index:20;background:var(--surface);border-top:1px solid var(--line);
+  padding:12px max(16px,env(safe-area-inset-right,0px)) calc(12px + env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px));
+  display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+.bar .size{font-size:13px;color:var(--mut);font-variant-numeric:tabular-nums}
+.bar .size.over{color:var(--danger);font-weight:600}
+.bar .btns{display:flex;gap:8px;margin-left:auto}
+/* xem ảnh lớn */
+#lb{position:fixed;inset:0;z-index:50;background:rgba(5,10,9,.92);display:flex;align-items:center;justify-content:center;
+  padding:max(16px,env(safe-area-inset-top,0px)) max(16px,env(safe-area-inset-right,0px)) max(16px,env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px))}
+#lb img{max-width:100%;max-height:100%;object-fit:contain;border-radius:8px}
+#lb button{position:absolute;border:0;border-radius:50%;width:44px;height:44px;background:rgba(255,255,255,.16);color:#fff;font-size:22px;cursor:pointer}
+#lb .x{top:max(12px,env(safe-area-inset-top,0px));right:max(12px,env(safe-area-inset-right,0px))}
+#lb .p{left:max(8px,env(safe-area-inset-left,0px));top:50%;margin-top:-22px}
+#lb .n{right:max(8px,env(safe-area-inset-right,0px));top:50%;margin-top:-22px}
+#lb .c{position:absolute;bottom:max(12px,env(safe-area-inset-bottom,0px));left:50%;transform:translateX(-50%);color:#fff;font-size:13px}
+#toast{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(24px + env(safe-area-inset-bottom,0px));z-index:60;
+  background:var(--ink);color:var(--bg);padding:10px 16px;border-radius:999px;font-size:14px;max-width:calc(100vw - 32px);text-align:center}
+body.editing #toast{bottom:calc(96px + env(safe-area-inset-bottom,0px))}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style></head><body>
+<div class="wrap" id="app"></div><div id="toast" role="status" aria-live="polite" hidden></div>
+<script id="st" type="application/json">{"profile":{"avatar":"","name":"Tên của bạn","zalo":"0900 000 000","zaloLink":"","phone":"0900 000 000","email":"ten@example.com"},"models":[{"id":"m1","title":"Mô hình hỗ trợ thứ nhất","desc":"Đây là mục mẫu. Bấm Chỉnh sửa để đổi tên, viết thông tin và thêm ảnh cho mô hình này.","images":[]},{"id":"m2","title":"Mô hình hỗ trợ thứ hai","desc":"Mỗi mô hình có thể có nhiều ảnh. Bạn thêm hoặc xóa ảnh trong chế độ chỉnh sửa.","images":[]}]}</script>
+<script id="code">
+(function () {
+  var FONT = 'https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap';
+  var LIMIT = 10 * 1024 * 1024;
+
+  var $ = function (s) { return document.querySelector(s); };
+  var app = $('#app');
+  var S = JSON.parse($('#st').textContent);
+  var D = null, edit = false, CAN = false, cancelAsk = false, dt;
+
+  function esc(s) {
+    return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+    });
+  }
+  function clone(o) { return JSON.parse(JSON.stringify(o)); }
+  function digits(s) { return String(s || '').replace(/\D/g, ''); }
+  function uid() { return 'm' + Math.random().toString(36).slice(2, 8); }
+
+  function zaloHref(p) {
+    var l = (p.zaloLink || '').trim();
+    if (l) {
+      if (!/^https?:\/\//i.test(l)) l = 'https://' + l;
+      try { var u = new URL(l); return (u.protocol === 'https:' || u.protocol === 'http:') ? u.href : ''; } catch (e) { return ''; }
+    }
+    var d = digits(p.zalo);
+    return d.length >= 9 ? 'https://zalo.me/' + d : '';
+  }
+  function telHref(s) {
+    var t = String(s || '').trim(), d = digits(t);
+    return d ? 'tel:' + (t.charAt(0) === '+' ? '+' : '') + d : '';
+  }
+  function mailHref(s) {
+    var t = String(s || '').trim();
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(t) ? 'mailto:' + t : '';
+  }
+  function initial(name) {
+    var w = String(name || '').trim().split(/\s+/); var l = w[w.length - 1] || '?';
+    return l.charAt(0).toUpperCase();
+  }
+
+  /* ---------- Xem ---------- */
+  function avatarInner(p) {
+    return p.avatar ? '<img src="' + esc(p.avatar) + '" alt="Ảnh đại diện">' : esc(initial(p.name));
+  }
+  function crow(label, value, href, cta, cls, copy, ext) {
+    return '<div class="crow"><div class="cmeta"><span class="clabel">' + label + '</span><span class="cval">' + esc(value) + '</span></div>' +
+      '<div class="cact">' +
+      (href ? '<a class="btn ' + cls + '" href="' + esc(href) + '"' + (ext ? ' target="_blank" rel="noopener"' : '') + '>' + cta + '</a>' : '') +
+      (copy ? '<button class="btn ghost" data-act="copy" data-v="' + esc(copy) + '">Sao chép</button>' : '') +
+      '</div></div>';
+  }
+  function viewHTML() {
+    var p = S.profile, rows = '';
+    if (p.zalo || p.zaloLink) rows += crow('Zalo', p.zalo || 'Liên kết Zalo', zaloHref(p), 'Mở Zalo', 'zalo', p.zalo, true);
+    if (p.phone) rows += crow('Điện thoại (chỉ gọi)', p.phone, telHref(p.phone), 'Gọi ngay', 'call', p.phone, false);
+    if (p.email) rows += crow('Email', p.email, mailHref(p.email), 'Gửi email', 'mail', p.email, false);
+    var cards = S.models.map(function (m, i) { return cardHTML(m, i); }).join('');
+    return '<div class="top">' + (CAN ? '<button class="btn ghost" data-act="edit">Chỉnh sửa</button>' : '') + '</div>' +
+      '<div class="layout"><aside class="profile"><div class="avatar">' + avatarInner(p) + '</div>' +
+      '<h1>' + esc(p.name) + '</h1><div class="contacts">' + rows + '</div></aside>' +
+      '<section><div class="sec-head"><h2>Các mô hình hỗ trợ</h2><span class="count">' + S.models.length + ' mô hình</span></div>' +
+      (cards ? '<div class="grid">' + cards + '</div>' : '<div class="empty">Chưa có mô hình nào.' + (CAN ? ' Bấm Chỉnh sửa để thêm.' : '') + '</div>') +
+      '</section></div>';
+  }
+  function cardHTML(m, i) {
+    var im = m.images || [];
+    var cover = im.length
+      ? '<button class="cover" data-act="open" data-m="' + i + '" data-i="0" aria-label="Xem ảnh lớn: ' + esc(m.title) + '"><img src="' + esc(im[0]) + '" alt="' + esc(m.title) + '"></button>'
+      : '<div class="cover ph"><span>Chưa có ảnh</span></div>';
+    var th = '';
+    if (im.length > 1) {
+      th = '<div class="thumbs">' + im.slice(1, 5).map(function (u, k) {
+        return '<button data-act="open" data-m="' + i + '" data-i="' + (k + 1) + '" aria-label="Xem ảnh ' + (k + 2) + '"><img src="' + esc(u) + '" alt=""></button>';
+      }).join('') + (im.length > 5 ? '<span class="more">+' + (im.length - 5) + '</span>' : '') + '</div>';
+    }
+    return '<article class="card">' + cover + th + '<div class="cbody"><h3>' + esc(m.title) + '</h3>' + (m.desc ? '<p>' + esc(m.desc) + '</p>' : '') + '</div></article>';
+  }
+
+  /* ---------- Sửa ---------- */
+  function editHTML() {
+    var p = D.profile;
+    var prof = '<aside class="profile">' +
+      '<div class="avrow"><div class="avatar">' + avatarInner(p) + '</div><div class="avbtns">' +
+      '<label class="btn ghost filebtn">' + (p.avatar ? 'Đổi ảnh' : 'Thêm ảnh') + '<input class="vh" type="file" accept="image/*" data-file="avatar"></label>' +
+      (p.avatar ? '<button class="btn ghost" data-act="rm-avatar">Xóa ảnh</button>' : '') + '</div></div>' +
+      field('Họ và tên', 'text', 'p.name', p.name, '') +
+      field('Số Zalo', 'tel', 'p.zalo', p.zalo, 'inputmode="tel"') +
+      field('Link Zalo (không bắt buộc)', 'text', 'p.zaloLink', p.zaloLink, 'placeholder="zalo.me/0900000000" autocapitalize="none"', 'Để trống thì tự tạo link từ số Zalo. Bấm vào sẽ mở ứng dụng Zalo.') +
+      field('Số điện thoại liên lạc (chỉ gọi)', 'tel', 'p.phone', p.phone, 'inputmode="tel"') +
+      field('Email', 'email', 'p.email', p.email, 'autocapitalize="none"') + '</aside>';
+    var cards = D.models.map(function (m, i) {
+      var imgs = (m.images || []).map(function (u, k) {
+        return '<div class="eimg"><img src="' + esc(u) + '" alt=""><button data-act="rm-img" data-m="' + i + '" data-i="' + k + '" aria-label="Xóa ảnh ' + (k + 1) + '">×</button></div>';
+      }).join('');
+      return '<article class="card edit"><div class="ehead"><span class="idx">Mô hình ' + (i + 1) + '</span><div class="eacts">' +
+        (i > 0 ? '<button class="btn ghost sm" data-act="up" data-m="' + i + '" aria-label="Chuyển lên">↑</button>' : '') +
+        (i < D.models.length - 1 ? '<button class="btn ghost sm" data-act="down" data-m="' + i + '" aria-label="Chuyển xuống">↓</button>' : '') +
+        '<button class="btn danger sm" data-act="del-m" data-m="' + i + '">Xóa</button></div></div>' +
+        field('Tên mô hình', 'text', 'm.title', m.title, 'data-m="' + i + '"') +
+        '<label class="f">Thông tin<textarea class="in" data-bind="m.desc" data-m="' + i + '">' + esc(m.desc) + '</textarea></label>' +
+        '<div class="egrid">' + imgs + '<label class="addimg">+ Thêm ảnh<input class="vh" type="file" accept="image/*" multiple data-file="model" data-m="' + i + '"></label></div></article>';
+    }).join('');
+    var bytes = JSON.stringify(D).length;
+    return '<div class="layout">' + prof + '<section><div class="sec-head"><h2>Các mô hình hỗ trợ</h2><span class="count">' + D.models.length + ' mô hình</span></div>' +
+      '<div class="grid" style="grid-template-columns:minmax(0,1fr)">' + cards + '</div>' +
+      '<button class="btn ghost addmodel" data-act="add-m">+ Thêm mô hình</button></section></div>' +
+      '<div class="bar"><span class="size' + (bytes > LIMIT ? ' over' : '') + '" id="size">Dung lượng ' + mb(bytes) + ' / ' + mb(LIMIT) + '</span>' +
+      '<div class="btns"><button class="btn ghost" data-act="cancel">' + (cancelAsk ? 'Bấm lại để bỏ thay đổi' : 'Hủy') + '</button>' +
+      '<button class="btn primary" data-act="save">Tải file index.html</button></div></div>';
+  }
+  function field(label, type, bind, val, attrs, hint) {
+    return '<label class="f">' + label + '<input class="in" type="' + type + '" data-bind="' + bind + '" value="' + esc(val) + '" ' + (attrs || '') + '>' + (hint ? '<small>' + hint + '</small>' : '') + '</label>';
+  }
+  function mb(b) { return (b / 1048576).toFixed(1).replace('.', ',') + ' MB'; }
+
+  function render() {
+    var y = window.scrollY;
+    document.body.classList.toggle('editing', edit);
+    document.title = S.profile.name || 'Portfolio';
+    if (edit && D) draftSoon();
+    app.innerHTML = edit ? editHTML() : viewHTML();
+    window.scrollTo(0, y);
+  }
+  function draftSoon() {
+    clearTimeout(dt);
+    dt = setTimeout(function () { try { if (D) localStorage.setItem('ptf_draft', JSON.stringify(D)); } catch (e) { } }, 700);
+  }
+  function dirty() { return JSON.stringify(D) !== JSON.stringify(S); }
+
+  /* ---------- Ảnh ---------- */
+  function loadImg(file) {
+    return new Promise(function (res, rej) {
+      var u = URL.createObjectURL(file), im = new Image();
+      im.onload = function () { URL.revokeObjectURL(u); res(im); };
+      im.onerror = function () { URL.revokeObjectURL(u); rej(new Error('bad')); };
+      im.src = u;
+    });
+  }
+  function shrink(file, max, square) {
+    return loadImg(file).then(function (im) {
+      var w = im.naturalWidth, h = im.naturalHeight, c = document.createElement('canvas'), x = c.getContext('2d');
+      if (square) {
+        var s = Math.min(w, h); c.width = c.height = max;
+        x.fillStyle = '#fff'; x.fillRect(0, 0, max, max);
+        x.drawImage(im, (w - s) / 2, (h - s) / 2, s, s, 0, 0, max, max);
+      } else {
+        var k = Math.min(1, max / Math.max(w, h)); c.width = Math.round(w * k); c.height = Math.round(h * k);
+        x.fillStyle = '#fff'; x.fillRect(0, 0, c.width, c.height);
+        x.drawImage(im, 0, 0, c.width, c.height);
+      }
+      return c.toDataURL('image/jpeg', square ? 0.85 : 0.8);
+    });
+  }
+  async function addFiles(files, target, mi) {
+    var list = Array.prototype.slice.call(files), fail = 0;
+    if (!list.length) return;
+    toast('Đang xử lý ảnh…', true);
+    for (var n = 0; n < list.length; n++) {
+      try {
+        if (target === 'avatar') { D.profile.avatar = await shrink(list[n], 640, true); break; }
+        D.models[mi].images.push(await shrink(list[n], 1100, false));
+      } catch (e) { fail++; }
+    }
+    render();
+    toast(fail ? 'Có ' + fail + ' ảnh không đọc được (hãy dùng JPG hoặc PNG).' : 'Đã thêm ảnh');
+  }
+
+  /* ---------- Xuất file ---------- */
+  function buildDoc(state) {
+    var json = JSON.stringify(state).replace(/</g, '\\u003c');
+    var css = $('#ps').textContent, c = $('#code').textContent, close = '<' + '/script>';
+    var name = String(state.profile.name || 'Portfolio').replace(/[<>&]/g, '');
+    return '<!doctype html><html lang="vi"><head><meta charset="utf-8">' +
+      '<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">' +
+      '<meta name="theme-color" content="#000000"><title>' + name + '</title>' +
+      '<link rel="stylesheet" href="' + FONT + '"><style id="ps">' + css + '</style></head><body>\n' +
+      '<div class="wrap" id="app"></div><div id="toast" role="status" aria-live="polite" hidden></div>\n' +
+      '<script id="st" type="application/json">' + json + close + '\n' +
+      '<script id="code">' + c + close + '\n</body></html>\n';
+  }
+  function save() {
+    if (JSON.stringify(D).length > LIMIT) { toast('Ảnh quá nặng. Hãy xóa bớt ảnh rồi tải lại.'); return; }
+    var blob = new Blob([buildDoc(D)], { type: 'text/html;charset=utf-8' });
+    var a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'index.html';
+    document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(function () { URL.revokeObjectURL(a.href); }, 5000);
+    toast('Đã tải index.html. Hãy tải file này lên hosting để thay file cũ.');
+  }
+
+  /* ---------- Thông báo, sao chép, xem ảnh ---------- */
+  var tt;
+  function toast(msg, sticky) {
+    var t = $('#toast'); t.textContent = msg; t.hidden = false; clearTimeout(tt);
+    if (!sticky) tt = setTimeout(function () { t.hidden = true; }, 3200);
+  }
+  async function copy(v) {
+    try { await navigator.clipboard.writeText(v); toast('Đã sao chép'); return; } catch (e) { }
+    try {
+      var ta = document.createElement('textarea'); ta.value = v; ta.style.position = 'fixed'; ta.style.opacity = '0';
+      document.body.appendChild(ta); ta.select(); var ok = document.execCommand('copy'); ta.remove();
+      toast(ok ? 'Đã sao chép' : 'Hãy bấm giữ vào số để sao chép');
+    } catch (e) { toast('Hãy bấm giữ vào số để sao chép'); }
+  }
+  var LB = null, lbEl = null, lastFocus = null;
+  function lbDraw() {
+    lbEl.innerHTML = '<button class="x" data-lb="x" aria-label="Đóng">×</button>' +
+      (LB.imgs.length > 1 ? '<button class="p" data-lb="p" aria-label="Ảnh trước">‹</button><button class="n" data-lb="n" aria-label="Ảnh sau">›</button>' : '') +
+      '<img src="' + esc(LB.imgs[LB.i]) + '" alt=""><span class="c">' + (LB.i + 1) + ' / ' + LB.imgs.length + '</span>';
+  }
+  function lbOpen(mi, i) {
+    var src = (edit ? D : S).models[mi]; if (!src || !src.images.length) return;
+    lastFocus = document.activeElement; LB = { imgs: src.images, i: i };
+    if (!lbEl) { lbEl = document.createElement('div'); lbEl.id = 'lb'; lbEl.setAttribute('role', 'dialog'); lbEl.setAttribute('aria-modal', 'true'); document.body.appendChild(lbEl); }
+    lbEl.hidden = false; lbDraw(); lbEl.querySelector('.x').focus();
+  }
+  function lbClose() { if (lbEl) lbEl.hidden = true; LB = null; if (lastFocus && lastFocus.focus) lastFocus.focus(); }
+  function lbStep(d) { LB.i = (LB.i + d + LB.imgs.length) % LB.imgs.length; lbDraw(); var b = lbEl.querySelector(d > 0 ? '.n' : '.p'); if (b) b.focus(); }
+  document.addEventListener('click', function (e) {
+    var b = e.target.closest && e.target.closest('[data-lb]');
+    if (b && LB) { var k = b.dataset.lb; if (k === 'x') lbClose(); else lbStep(k === 'n' ? 1 : -1); return; }
+    if (LB && e.target === lbEl) lbClose();
+  });
+  document.addEventListener('keydown', function (e) {
+    if (!LB) return;
+    if (e.key === 'Escape') lbClose(); else if (e.key === 'ArrowRight') lbStep(1); else if (e.key === 'ArrowLeft') lbStep(-1);
+  });
+
+  /* ---------- Sự kiện ---------- */
+  app.addEventListener('click', function (e) {
+    var b = e.target.closest('[data-act]'); if (!b) return;
+    var a = b.dataset.act, m = +b.dataset.m, i = +b.dataset.i;
+    if (a === 'copy') copy(b.dataset.v);
+    else if (a === 'open') lbOpen(m, i);
+    else if (a === 'edit') { D = clone(S); edit = true; cancelAsk = false; render(); window.scrollTo(0, 0); }
+    else if (a === 'cancel') {
+      if (dirty() && !cancelAsk) { cancelAsk = true; render(); setTimeout(function () { if (cancelAsk) { cancelAsk = false; if (edit) render(); } }, 4000); return; }
+      edit = false; D = null; cancelAsk = false; try { localStorage.removeItem('ptf_draft'); } catch (x) { } render();
+    }
+    else if (a === 'save') save();
+    else if (a === 'rm-avatar') { D.profile.avatar = ''; render(); }
+    else if (a === 'rm-img') { D.models[m].images.splice(i, 1); render(); }
+    else if (a === 'del-m') { D.models.splice(m, 1); render(); }
+    else if (a === 'up' || a === 'down') {
+      var j = a === 'up' ? m - 1 : m + 1, t = D.models[m]; D.models[m] = D.models[j]; D.models[j] = t; render();
+    }
+    else if (a === 'add-m') {
+      D.models.push({ id: uid(), title: 'Mô hình mới', desc: '', images: [] }); render();
+      var cs = app.querySelectorAll('.card.edit'); var last = cs[cs.length - 1];
+      if (last) { last.scrollIntoView({ block: 'center' }); var inp = last.querySelector('input.in'); if (inp) { inp.focus(); inp.select(); } }
+    }
+  });
+  app.addEventListener('input', function (e) {
+    var t = e.target, bnd = t.dataset && t.dataset.bind; if (!bnd || !D) return;
+    if (bnd === 'm.title') D.models[+t.dataset.m].title = t.value;
+    else if (bnd === 'm.desc') D.models[+t.dataset.m].desc = t.value;
+    else D.profile[bnd.slice(2)] = t.value;
+    var z = $('#size'); if (z) { var n = JSON.stringify(D).length; z.textContent = 'Dung lượng ' + mb(n) + ' / ' + mb(LIMIT); z.classList.toggle('over', n > LIMIT); }
+  });
+  app.addEventListener('change', function (e) {
+    var t = e.target; if (!t.dataset || !t.dataset.file || !D) return;
+    var files = t.files; addFiles(files, t.dataset.file, +t.dataset.m);
+  });
+
+  render();
+
+  /* ---------- Chế độ chỉnh sửa: chỉ hiện khi mở link có đuôi #chinhsua ---------- */
+  function gate() {
+    var want = location.hash === '#chinhsua';
+    if (want === CAN) return;
+    CAN = want;
+    if (!CAN) { edit = false; D = null; render(); return; }
+    var raw = null; try { raw = localStorage.getItem('ptf_draft'); } catch (e) { }
+    if (raw && raw !== JSON.stringify(S)) {
+      try { D = JSON.parse(raw); edit = true; render(); toast('Đã khôi phục bản nháp chưa tải lên'); return; } catch (e) { }
+    }
+    render();
+  }
+  window.addEventListener('hashchange', gate);
+  gate();
+})();
+</script>
+</body></html>
